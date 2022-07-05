@@ -1,19 +1,18 @@
 import { Form, Input, Modal, notification } from "antd";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useCookies } from "react-cookie";
 import { BASE_URL } from "./shared/constant";
+import TaskListContext from "./shared/TaskListContext";
 
 export const AddTaskModal = ({
   setShowAddTaskModel,
-  showAddTaskModel,
-  taskList,
-  setTaskList,
+  showAddTaskModel
 }: any) => {
   const [cookies] = useCookies(["token"]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-
+  const { taskList, setTaskList } = useContext(TaskListContext);
   const addTask = () => {
     console.log(title, description);
     axios
@@ -37,8 +36,8 @@ export const AddTaskModal = ({
           });
           setShowAddTaskModel(false);
           setTaskList([...taskList, res.data]);
-          setTitle('')
-          setDescription('')
+          setTitle("");
+          setDescription("");
         }
       })
       .catch((error) => {
@@ -62,7 +61,10 @@ export const AddTaskModal = ({
           <Input onChange={(e) => setTitle(e.target.value)} value={title} />
         </Form.Item>
         <Form.Item label="Description" name="description">
-          <Input onChange={(e) => setDescription(e.target.value)} value={description} />
+          <Input
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
+          />
         </Form.Item>
       </Form>
     </Modal>
