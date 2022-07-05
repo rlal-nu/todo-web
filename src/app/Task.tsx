@@ -15,7 +15,6 @@ export const Task = () => {
 
   const viewDetails = (itemId: any) => {
     const currentSelectedTaskIndex = taskList.findIndex((item: any) => {
-      console.log(item._id, itemId);
       return item._id === itemId;
     });
     if (currentSelectedTaskIndex !== -1) {

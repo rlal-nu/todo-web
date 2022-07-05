@@ -14,7 +14,6 @@ export const AddTaskModal = ({
   const [description, setDescription] = useState("");
   const { taskList, setTaskList } = useContext(TaskListContext);
   const addTask = () => {
-    console.log(title, description);
     axios
       .post(
         `${BASE_URL}/task`,

@@ -1,16 +1,11 @@
-import { Form, Input, Modal, notification, Typography } from "antd";
-import axios from "axios";
-import { useContext, useMemo, useState } from "react";
-import { useCookies } from "react-cookie";
-import { BASE_URL } from "./shared/constant";
-import TaskListContext from "./shared/TaskListContext";
+import { Form, Modal, Typography } from "antd";
+
 
 export const ViewTaskModal = ({
   taskDetails,
   showViewTaskModel,
   setShowViewTaskModel,
 }: any) => {
-  console.log(taskDetails);
   return (
     <Modal
       title="View Task"
