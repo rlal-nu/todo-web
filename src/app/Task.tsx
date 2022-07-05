@@ -10,6 +10,10 @@ export const Task = () => {
   const [taskList, setTaskList] = useState([]);
   const [showAddTaskModel, setShowAddTaskModel] = useState(false);
 
+  
+  const viewDetails = (itemId: any)=>{
+    
+  }
   useMemo(() => {
     axios
       .get(`${BASE_URL}/task`, {
@@ -37,7 +41,9 @@ export const Task = () => {
         dataSource={taskList}
         renderItem={(item: any) => (
           <List.Item>
-            {item.title} <a>view details</a>
+            {item.title} <Button type="link" htmlType="button" onClick={()=>viewDetails(item._id)}>
+              View Details
+            </Button>
           </List.Item>
         )}
       />
