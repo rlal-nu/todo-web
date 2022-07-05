@@ -31,7 +31,7 @@ export const Regsiter = () => {
       },
     });
   };
-  
+
   const onSubmit = () => {
     const errors: any = {};
     if (formValue.firstName.length === 0) {
@@ -49,9 +49,9 @@ export const Regsiter = () => {
         "Password must contains atleast one number, one uppercase and one special character";
     }
     setErrorMessage(errors);
-    // if(Object.keys(errors).length === 0){
-    submitForm();
-    // }
+    if (Object.keys(errors).length === 0) {
+      submitForm();
+    }
   };
 
   const submitForm = () => {

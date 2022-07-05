@@ -49,7 +49,7 @@ export const AddTaskModal = ({
   };
   return (
     <Modal
-      title="Basic Modal"
+      title="Add Task"
       visible={showAddTaskModel}
       onOk={() => addTask()}
       onCancel={() => {
