@@ -2,11 +2,14 @@ import { Button, Divider, List, notification, Typography } from "antd";
 import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { useCookies } from "react-cookie";
+import { AddTaskModal } from "./AddTaskModal";
 import { BASE_URL } from "./shared/constant";
 
 export const Task = () => {
   const [cookies, setCookie] = useCookies(["token"]);
   const [taskList, setTaskList] = useState([]);
+  const [showAddTaskModel, setShowAddTaskModel] = useState(false);
+
   useMemo(() => {
     axios
       .get(`${BASE_URL}/task`, {
@@ -30,8 +33,6 @@ export const Task = () => {
         List Of Task (Click on view to see details)
       </Divider>
       <List
-        header={<div>Header</div>}
-        footer={<div>Footer</div>}
         bordered
         dataSource={taskList}
         renderItem={(item: any) => (
@@ -41,9 +42,21 @@ export const Task = () => {
         )}
       />
       <br></br>
-      <Button type="primary" htmlType="submit">
+      <Button
+        type="primary"
+        htmlType="submit"
+        onClick={() => {
+          setShowAddTaskModel(true);
+        }}
+      >
         Add new task
       </Button>
+      <AddTaskModal
+        setShowAddTaskModel={setShowAddTaskModel}
+        showAddTaskModel={showAddTaskModel}
+        taskList={taskList}
+        setTaskList={setTaskList}
+      />
     </>
   );
 };
