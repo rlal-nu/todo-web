@@ -46,12 +46,12 @@ export const Login = () => {
         "Password must contains atleast one number, one uppercase and one special character";
     }
     setErrorMessage(errors);
-    // if(Object.keys(errors).length === 0){
-    submitForm();
-    // }
+    if (Object.keys(errors).length === 0) {
+      submitForm();
+    }
   };
 
-  const submitForm = () => {    
+  const submitForm = () => {
     axios
       .post(`${BASE_URL}/auth/login`, formValue)
       .then((res) => {
@@ -60,7 +60,7 @@ export const Login = () => {
             message: "Login Successful",
             description: "Your login is successful, navigating to task page",
           });
-          setCookie('token', res.data?.token, { path: '/' });
+          setCookie("token", res.data?.token, { path: "/" });
           navigate("/task");
         }
       })
