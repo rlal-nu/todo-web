@@ -10,9 +10,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/">
-          {/* <Route index element={<Login />} /> */}
-          <Route path="login" element={<Login />} />
+        <Route path="/" >
+          <Route index element={<Login />} />
+          <Route path="login" element={<Login />}/>
           <Route path="register" element={<Regsiter />} />
           <Route path="task" element={<Task />} />
 

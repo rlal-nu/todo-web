@@ -9,7 +9,7 @@ import {
   Typography,
 } from "antd";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL, EMAIL_REGEX, PASSWORD_REGEX } from "./shared/constant";
@@ -31,6 +31,13 @@ export const Login = () => {
       },
     });
   };
+
+  useEffect(()=>{
+    if(cookies.token){
+      console.log("hello")
+      navigate('/task')
+    }
+  },[])
 
   const onSubmit = () => {
     const errors: any = {};

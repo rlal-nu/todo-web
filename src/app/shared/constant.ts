@@ -3,4 +3,4 @@ export const EMAIL_REGEX =
 export const PASSWORD_REGEX =
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 
-export const BASE_URL = "http://localhost:9200";
+export const BASE_URL = "https://lalr-todo-server.herokuapp.com";

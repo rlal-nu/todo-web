@@ -6,8 +6,10 @@ import { AddTaskModal } from "./AddTaskModal";
 import TaskListContext from "./shared/TaskListContext";
 import { BASE_URL } from "./shared/constant";
 import { ViewTaskModal } from "./ViewTaskModal";
+import { BrowserRouter, useNavigate } from "react-router-dom";
+
 export const Task = () => {
-  const [cookies, setCookie] = useCookies(["token"]);
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const [taskList, setTaskList]: any = useState([]);
   const [showAddTaskModel, setShowAddTaskModel] = useState(false);
   const [showViewTaskModel, setShowViewTaskModel] = useState(false);
@@ -22,7 +24,23 @@ export const Task = () => {
       setShowViewTaskModel(true);
     }
   };
+  const navigate = useNavigate();
+  const onLogout = () => {
+    removeCookie("token");
+    notification.open({
+      message: "Logged Out",
+      description: "You have been logged out",
+    });
+    navigate("/login")
+  };
   useMemo(() => {
+    if (!cookies.token) {
+      notification.open({
+        message: "Unauthorised",
+        description: "Please login to view the task.",
+      });
+      navigate("/login");
+    }
     axios
       .get(`${BASE_URL}/task`, {
         headers: {
@@ -44,6 +62,11 @@ export const Task = () => {
       <TaskListContext.Provider value={{ taskList, setTaskList }}>
         <Divider orientation="left">
           List Of Task (Click on view to see details)
+        </Divider>
+        <Divider orientation="right">
+          <Button type="ghost" htmlType="submit" onClick={onLogout}>
+            Logout
+          </Button>
         </Divider>
         <List
           bordered
