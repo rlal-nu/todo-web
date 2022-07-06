@@ -50,7 +50,7 @@ export const Login = () => {
       errors.password = "Password field can not be empty";
     } else if (!formValue.password.match(PASSWORD_REGEX)) {
       errors.password =
-        "Password must contains atleast one number, one uppercase and one special character";
+        "Password must contains atleast one number, one uppercase and one special character of length 8";
     }
     setErrorMessage(errors);
     if (Object.keys(errors).length === 0) {
